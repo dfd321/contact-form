@@ -95,13 +95,12 @@
   const form = document.getElementById("contactForm");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
+  const formData = new FormData(form);
 
-    const formData = new FormData(form);
-
-    fetch("https://script.google.com/macros/s/AKfycbw-zWUHGE1tef-ZNxT3fwEsANiWQnLeRC4fri11d879I3hngec4pEZcXFf9HQ3jtpWZ/exec", {
-      method: "POST",
-      body: formData,
+  fetch("https://script.google.com/macros/s/AKfycbw-zWUHGE1tef-ZNxT3fwEsANiWQnLeRC4fri11d879I3hngec4pEZcXFf9HQ3jtpWZ/exec", {
+    method: "POST",
+    body: formData, // ✅ not JSON
     })
             .then((response) => response.text())
             .then((data) => {
