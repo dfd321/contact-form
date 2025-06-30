@@ -104,13 +104,15 @@
           const scriptURL =
             "https://script.google.com/macros/s/AKfycbw-zWUHGE1tef-ZNxT3fwEsANiWQnLeRC4fri11d879I3hngec4pEZcXFf9HQ3jtpWZ/exec";
 
-          fetch(scriptURL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, message }),
-          })
+          const formData = new URLSearchParams();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("message", message);
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: formData,
+  })
             .then((response) => response.text())
             .then((data) => {
               alert("Thank you for your message!");
